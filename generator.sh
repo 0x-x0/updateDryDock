@@ -22,6 +22,11 @@ for base in "${bases[@]}"
                 echo 'docker pull '$account'/'$base$language$languageVersion':'$tag
                 echo './validateSuccessfulPush.sh' $account'/'$base$language$languageVersion $tip $tag $slackWebhook
               done
+            for tag in "${tags[@]}"
+              do
+                echo 'docker rmi -f '$account'/'$base$language$languageVersion':'$tag
+              done
+            echo 'docker rmi -f '$account'/'$base$language$languageVersion':'$tip
           done
       done
   done
